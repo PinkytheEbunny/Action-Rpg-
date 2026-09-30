@@ -163,6 +163,9 @@ class Character:
         print(f"Attack Power: {self.weapon.power}")
         print(f"Attack Speed: {self.weapon.speed}")
 
+def explore():
+    print("Where would you like to explore?\n")
+    choice_of_exploration = input("1.)")
 
 # Main Execution
 player = Character(dungeon=dungeon, level=level)
@@ -172,7 +175,8 @@ while game_running:
     clear_screen()
     print("=== MAIN MENU ===")
     print("1.) View Stats")
-    print("2.) Exit Game")
+    print("2.) Explore")
+    print("3.) Exit Game")
     
     try:
         choice_of_action = int(input("\nWhat would you like to do now young hero?\n> "))
@@ -183,8 +187,13 @@ while game_running:
         player.display_stats()
         input("\nPress Enter to return to the menu...")
     elif choice_of_action == 2:
+        explore()
+        input("\nPress Enter to return to the menu...")
+    elif choice_of_action == 3:
         print("\nThank you for playing!")
         game_running = False
     else:
         print("\nSorry, that is not a valid input.")
         time.sleep(1)
+
+
