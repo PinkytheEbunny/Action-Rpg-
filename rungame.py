@@ -13,8 +13,8 @@ RARITY_MULTIPLIERS = {
     'Legendary': 3.0
 }
 quests = [
-{},
-{}
+{"mainquests": {"Tutorial": ""}},
+{"sidequests": {}}
 ]
 
 
@@ -175,25 +175,59 @@ def explore():
 def view_quests(quests):
     if not quests or all(not q for q in quests):
         print("There are no quests.")
-    else:
-        print("=== Quests ===")
-        side_or_main = input("Would you like to view (1) Main Quests or (2) Side Quests?\n> ")
-        if side_or_main == '1':
-            print("\n--- Main Quests ---")
-            side_quests = quests["mainquests"] if "mainquests" in quests else {}
-            if not side_quests:
-                print("There are no main quests.")
-                return
-        elif side_or_main == '2':
-            print("\n--- Side Quests ---")
-            side_quests = quests["sidequests"] if "sidequests" in quests else {}
-            if not side_quests:
-                print("There are no side quests.")
-            print("\n--- Side Quests ---")
-        else:
-            print("Invalid selection. Please choose 1 or 2.")
+        return
+    print("=== Quests ===")
+    side_or_main = input("Would you like to view (1) Main Quests or (2) Side Quests?\n> ")
+    def get_category_data(category_key):
+        for q_dict in quests:
+            if category_key in q_dict:
+                return q_dict[category_key]
+        return {}
+    if side_or_main == '1':
+        print("\n--- Main Quests ---")
+        main_quests = get_category_data("mainquests")
+        if not main_quests:
+            print("There are no main quests.")
             return
-        
+        for title, details in main_quests.items():
+            print(f"• {title}: {details}" if details else f"• {title}")
+        if "Tutorial" in main_quests:
+            choose_in_tutorial = input("\nWould you like to view the tutorial? (y/n)\n> ")
+            if choose_in_tutorial.lower() == 'y':
+                tutorial()
+                main_quests.pop("Tutorial")
+    elif side_or_main == '2':
+        print("\n--- Side Quests ---")
+        side_quests = get_category_data("sidequests")
+        if not side_quests:
+            print("There are no side quests.")
+            return
+        for title, details in side_quests.items():
+            print(f"• {title}: {details}" if details else f"• {title}")
+    else:
+        print("Invalid selection. Please choose 1 or 2.")
+        return
+
+def tutorial():
+    print("Welcome to the tutorial! Here you will learn the basics of the game.")
+    print("1.) How to explore")
+    print("2.) How to view quests")
+    print("3.) How to view your stats")
+    print("4.) How to exit the game")
+    choice_in_tutorial = input("\nEnter the number of the topic you want to learn about:\n> ")
+    if choice_in_tutorial == '1':
+        print("\nExploring allows you to venture into different areas and encounter enemies, treasures, and quests.")
+    elif choice_in_tutorial == '2':
+        print("\nViewing quests lets you see the main and side quests available to you.")
+    elif choice_in_tutorial == '3':
+        print("\nViewing your stats shows your character's level, class, weapon stats, and dungeon progress.")
+    elif choice_in_tutorial == '4':
+        print("\nExiting the game will NOT save your progress and close the game.")
+    else:
+        print("\nInvalid selection. Please choose a number between 1 and 4.")
+    input("\nPress Enter to return to the main menu...")
+
+
 # Main Execution
 player = Character(dungeon=dungeon, level=level)
 
@@ -224,6 +258,9 @@ while game_running:
     elif choice_of_action == 4:
         print("\nThank you for playing!")
         game_running = False
+    elif choice_of_action == 5:
+        tutorial()
+        input("\nPress Enter to return to the menu...")
     else:
         print("\nSorry, that is not a valid input.")
         time.sleep(1)
