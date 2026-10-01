@@ -12,6 +12,11 @@ RARITY_MULTIPLIERS = {
     'Epic': 2.0,
     'Legendary': 3.0
 }
+quests = [
+{},
+{}
+]
+
 
 
 def clear_screen():
@@ -167,6 +172,28 @@ def explore():
     print("Where would you like to explore?\n")
     choice_of_exploration = input("1.)")
 
+def view_quests(quests):
+    if not quests or all(not q for q in quests):
+        print("There are no quests.")
+    else:
+        print("=== Quests ===")
+        side_or_main = input("Would you like to view (1) Main Quests or (2) Side Quests?\n> ")
+        if side_or_main == '1':
+            print("\n--- Main Quests ---")
+            side_quests = quests["mainquests"] if "mainquests" in quests else {}
+            if not side_quests:
+                print("There are no main quests.")
+                return
+        elif side_or_main == '2':
+            print("\n--- Side Quests ---")
+            side_quests = quests["sidequests"] if "sidequests" in quests else {}
+            if not side_quests:
+                print("There are no side quests.")
+            print("\n--- Side Quests ---")
+        else:
+            print("Invalid selection. Please choose 1 or 2.")
+            return
+        
 # Main Execution
 player = Character(dungeon=dungeon, level=level)
 
@@ -176,7 +203,8 @@ while game_running:
     print("=== MAIN MENU ===")
     print("1.) View Stats")
     print("2.) Explore")
-    print("3.) Exit Game")
+    print("3.) View Quests")
+    print("4.) Exit Game")
     
     try:
         choice_of_action = int(input("\nWhat would you like to do now young hero?\n> "))
@@ -190,6 +218,10 @@ while game_running:
         explore()
         input("\nPress Enter to return to the menu...")
     elif choice_of_action == 3:
+        clear_screen()
+        view_quests(quests)
+        input("\nPress Enter to return to the menu...")
+    elif choice_of_action == 4:
         print("\nThank you for playing!")
         game_running = False
     else:
