@@ -1,33 +1,29 @@
-Action-Rpg-
-This is a fun rpg game to play when you're bored! STILL IN DEVELOPEMENT
+# ⚔️ Action RPG
 
-A demon lord has plagued the land and it is your duty as the hero to defeat him along with his officers
+> *A fun, action-packed RPG to play when you're bored!*  
+> ⚠️ **Status:** STILL IN DEVELOPMENT
 
--You can select from 3 different classes that divide into 3 subclasses
+---
 
-#-warrior
+## 📜 Story
+A dark **Demon Lord** has plagued the land. It is your duty as the hero to rise up, defeat his powerful officers, and vanquish the Demon Lord once and for all!
 
-1.) Assassin
+---
 
-2.) Great Sword Wielder
+## 🛡️ Classes & Subclasses
+Choose your playstyle from **3 main classes**, each branching into **3 specialized subclasses**:
 
-3.) Knight
+### ⚔️ Warrior
+* **Assassin** – Fast, lethal, and deadly from the shadows.
+* **Great Sword Wielder** – Heavy-hitting attacks with massive reach.
+* **Knight** – High defense, built to protect and endure.
 
--ranged
+### 🏹 Ranged
+* **Archer** – Master of the bow with steady precision.
+* **Gunslinger** – High-speed firepower and quick maneuvers.
+* **Sniper** – Long-range, devastating single-shot damage.
 
-1.) Archer
-
-2.) Gunslinger
-
-3.) Sniper
-
--mage
-
-1.) Elementalist
-
-2.) Necremancer
-
-3.) Battlemage
-
-
-
+### 🔮 Mage
+* **Elementalist** – Harnesses fire, ice, and lightning to control the battlefield.
+* **Necromancer** – Summons the undead to fight alongside you.
+* **Battlemage** – Combines magic with close-quarters combat.
