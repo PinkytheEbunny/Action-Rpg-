@@ -4,7 +4,7 @@ import time
 
 dungeon = 1
 level = 1
-
+#Rarity multipliers for weapon stats based on rarity
 RARITY_MULTIPLIERS = {
     'Common': 1.0,
     'Uncommon': 1.3,
@@ -12,25 +12,23 @@ RARITY_MULTIPLIERS = {
     'Epic': 2.0,
     'Legendary': 3.0
 }
+#Dictionary to hold main and side quests
 quests = [
 {"mainquests": {"Tutorial": ""}},
 {"sidequests": {}}
 ]
-
-
-
+#clear the screen based on the operating system
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
+#class to represent a weapon with type, rarity, power, and speed
 class Weapon:
     def __init__(self, weapon_type, rarity, power, speed):
         self.type = weapon_type
         self.rarity = rarity
         self.power = power
         self.speed = speed
-
-
+#class to represent a character with dungeon level, character level, name, role, and weapon
 class Character:
     def __init__(self, dungeon=1, level=1):
         self.dungeon = dungeon
@@ -168,16 +166,18 @@ class Character:
         print(f"Attack Power: {self.weapon.power}")
         print(f"Attack Speed: {self.weapon.speed}")
 
+#still working on the explore function, but for now it just prompts the user for input
 def explore():
     print("Where would you like to explore?\n")
     choice_of_exploration = input("1.)")
-
+#this is the function that allows the user to view their quests, both main and side quests
 def view_quests(quests):
     if not quests or all(not q for q in quests):
         print("There are no quests.")
         return
     print("=== Quests ===")
     side_or_main = input("Would you like to view (1) Main Quests or (2) Side Quests?\n> ")
+#function to check if there is any quests in side quests or main quests
     def get_category_data(category_key):
         for q_dict in quests:
             if category_key in q_dict:
@@ -190,7 +190,7 @@ def view_quests(quests):
             print("There are no main quests.")
             return
         for title, details in main_quests.items():
-            print(f"• {title}: {details}" if details else f"• {title}")
+            print(f"• {title}: {details}" if details else f"{title}")
         if "Tutorial" in main_quests:
             choose_in_tutorial = input("\nWould you like to view the tutorial? (y/n)\n> ")
             if choose_in_tutorial.lower() == 'y':
@@ -203,11 +203,11 @@ def view_quests(quests):
             print("There are no side quests.")
             return
         for title, details in side_quests.items():
-            print(f"• {title}: {details}" if details else f"• {title}")
+            print(f"{title}: {details}" if details else f"{title}")
     else:
         print("Invalid selection. Please choose 1 or 2.")
         return
-
+#This is the tutorial function that explains the basics of the game to the user
 def tutorial():
     print("Welcome to the tutorial! Here you will learn the basics of the game.")
     print("1.) How to explore")
@@ -230,7 +230,7 @@ def tutorial():
 
 # Main Execution
 player = Character(dungeon=dungeon, level=level)
-
+#this is how the game runs it will evenetually have a system to where when you die it will make game_running = False and exit the game, but for now it just runs until the user exits
 game_running = True
 while game_running:
     clear_screen()
