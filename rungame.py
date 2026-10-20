@@ -29,6 +29,7 @@ class Weapon:
         self.power = power
         self.speed = speed
 #class to represent a character with dungeon level, character level, name, role, and weapon
+
 class Character:
     def __init__(self, dungeon=1, level=1):
         self.dungeon = dungeon
@@ -166,6 +167,10 @@ class Character:
         print(f"Attack Power: {self.weapon.power}")
         print(f"Attack Speed: {self.weapon.speed}")
 
+
+    
+    
+
 #still working on the explore function, but for now it just prompts the user for input
 def explore():
     print("Where would you like to explore?\n")
@@ -177,7 +182,7 @@ def view_quests(quests):
         return
     print("=== Quests ===")
     side_or_main = input("Would you like to view (1) Main Quests or (2) Side Quests?\n> ")
-#function to check if there is any quests in side quests or main quests
+    #function to check if there is any quests in side quests or main quests
     def get_category_data(category_key):
         for q_dict in quests:
             if category_key in q_dict:
